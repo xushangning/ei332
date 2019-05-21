@@ -6,6 +6,8 @@ Collection of labs for EI332 of SJTU
 
 Some of the files may *NOT* be distributable under the GPL license due to restrictions of the Intel University Program. The author has tried its best to remove such files but omission is unavoidable. **USE AT YOUR OWN DISCRETION!**
 
+Notably, the PLL from the IP catalog for generating clock signals is not included.
+
 ## References
 
 - [yyong119/EI332-SourceCode](https://github.com/yyong119/EI332-SourceCode)
