@@ -37,8 +37,24 @@ refer to the applicable agreement for further details.
 	(annotation_block (location)(rect -144 176 -80 192))
 )
 (pin
+	(input)
+	(rect 0 288 168 304)
+	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
+	(text "KEY3" (rect 5 0 34 11)(font "Arial" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 84 12)(pt 109 12))
+		(line (pt 84 4)(pt 109 4))
+		(line (pt 113 8)(pt 168 8))
+		(line (pt 84 12)(pt 84 4))
+		(line (pt 109 4)(pt 113 8))
+		(line (pt 109 12)(pt 113 8))
+	)
+	(text "VCC" (rect 128 7 148 17)(font "Arial" (font_size 6)))
+)
+(pin
 	(output)
-	(rect 784 656 960 672)
+	(rect 904 656 1080 672)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "HEX0[6..0]" (rect 90 0 143 13)(font "Intel Clear" ))
 	(pt 0 8)
@@ -51,11 +67,11 @@ refer to the applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12))
 		(line (pt 78 12)(pt 82 8))
 	)
-	(annotation_block (location)(rect 960 672 1024 688))
+	(annotation_block (location)(rect 1080 672 1144 688))
 )
 (pin
 	(output)
-	(rect 784 560 960 576)
+	(rect 904 560 1080 576)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "HEX1[6..0]" (rect 90 0 143 13)(font "Intel Clear" ))
 	(pt 0 8)
@@ -68,11 +84,11 @@ refer to the applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12))
 		(line (pt 78 12)(pt 82 8))
 	)
-	(annotation_block (location)(rect 960 576 1024 592))
+	(annotation_block (location)(rect 1080 576 1144 592))
 )
 (pin
 	(output)
-	(rect 784 464 960 480)
+	(rect 904 464 1080 480)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "HEX2[6..0]" (rect 90 0 143 13)(font "Intel Clear" ))
 	(pt 0 8)
@@ -85,11 +101,11 @@ refer to the applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12))
 		(line (pt 78 12)(pt 82 8))
 	)
-	(annotation_block (location)(rect 960 480 1024 496))
+	(annotation_block (location)(rect 1080 480 1144 496))
 )
 (pin
 	(output)
-	(rect 784 368 960 384)
+	(rect 904 368 1080 384)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "HEX3[6..0]" (rect 90 0 143 13)(font "Intel Clear" ))
 	(pt 0 8)
@@ -102,11 +118,11 @@ refer to the applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12))
 		(line (pt 78 12)(pt 82 8))
 	)
-	(annotation_block (location)(rect 960 384 1024 400))
+	(annotation_block (location)(rect 1080 384 1144 400))
 )
 (pin
 	(output)
-	(rect 784 264 960 280)
+	(rect 904 264 1080 280)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "HEX4[6..0]" (rect 90 0 143 13)(font "Intel Clear" ))
 	(pt 0 8)
@@ -119,11 +135,11 @@ refer to the applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12))
 		(line (pt 78 12)(pt 82 8))
 	)
-	(annotation_block (location)(rect 960 280 1024 296))
+	(annotation_block (location)(rect 1080 280 1144 296))
 )
 (pin
 	(output)
-	(rect 784 176 960 192)
+	(rect 904 176 1080 192)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "HEX5[6..0]" (rect 90 0 144 11)(font "Arial" ))
 	(pt 0 8)
@@ -136,10 +152,10 @@ refer to the applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12))
 		(line (pt 78 12)(pt 82 8))
 	)
-	(annotation_block (location)(rect 960 192 1016 208))
+	(annotation_block (location)(rect 1080 192 1136 208))
 )
 (symbol
-	(rect 616 152 784 232)
+	(rect 736 152 904 232)
 	(text "ssd" (rect 5 0 22 11)(font "Arial" ))
 	(text "inst4" (rect 8 64 32 77)(font "Intel Clear" ))
 	(port
@@ -161,7 +177,7 @@ refer to the applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 616 240 784 320)
+	(rect 736 240 904 320)
 	(text "ssd" (rect 5 0 22 11)(font "Arial" ))
 	(text "inst5" (rect 8 64 32 77)(font "Intel Clear" ))
 	(port
@@ -183,7 +199,7 @@ refer to the applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 616 344 784 424)
+	(rect 736 344 904 424)
 	(text "ssd" (rect 5 0 22 11)(font "Arial" ))
 	(text "inst6" (rect 8 64 32 77)(font "Intel Clear" ))
 	(port
@@ -205,7 +221,7 @@ refer to the applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 616 440 784 520)
+	(rect 736 440 904 520)
 	(text "ssd" (rect 5 0 22 11)(font "Arial" ))
 	(text "inst7" (rect 8 64 32 77)(font "Intel Clear" ))
 	(port
@@ -227,7 +243,7 @@ refer to the applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 616 536 784 616)
+	(rect 736 536 904 616)
 	(text "ssd" (rect 5 0 22 11)(font "Arial" ))
 	(text "inst8" (rect 8 64 32 77)(font "Intel Clear" ))
 	(port
@@ -249,7 +265,7 @@ refer to the applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 616 632 784 712)
+	(rect 736 632 904 712)
 	(text "ssd" (rect 5 0 22 11)(font "Arial" ))
 	(text "inst9" (rect 8 64 32 77)(font "Intel Clear" ))
 	(port
@@ -320,7 +336,7 @@ refer to the applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 296 136 480 280)
+	(rect 368 136 600 280)
 	(text "stopwatch_counter" (rect 5 0 99 11)(font "Arial" ))
 	(text "inst" (rect 8 128 25 139)(font "Arial" ))
 	(port
@@ -331,46 +347,53 @@ refer to the applicable agreement for further details.
 		(line (pt 0 32)(pt 16 32))
 	)
 	(port
-		(pt 184 32)
+		(pt 0 48)
+		(input)
+		(text "key_start_pause" (rect 0 0 81 11)(font "Arial" ))
+		(text "key_start_pause" (rect 21 43 102 54)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 232 32)
 		(output)
 		(text "min_higher[3..0]" (rect 0 0 79 11)(font "Arial" ))
-		(text "min_higher[3..0]" (rect 97 27 176 38)(font "Arial" ))
-		(line (pt 184 32)(pt 168 32)(line_width 3))
+		(text "min_higher[3..0]" (rect 145 27 224 38)(font "Arial" ))
+		(line (pt 232 32)(pt 216 32)(line_width 3))
 	)
 	(port
-		(pt 184 48)
+		(pt 232 48)
 		(output)
 		(text "min_lower[3..0]" (rect 0 0 75 11)(font "Arial" ))
-		(text "min_lower[3..0]" (rect 100 43 175 54)(font "Arial" ))
-		(line (pt 184 48)(pt 168 48)(line_width 3))
+		(text "min_lower[3..0]" (rect 148 43 223 54)(font "Arial" ))
+		(line (pt 232 48)(pt 216 48)(line_width 3))
 	)
 	(port
-		(pt 184 64)
+		(pt 232 64)
 		(output)
 		(text "s_higher[3..0]" (rect 0 0 67 11)(font "Arial" ))
-		(text "s_higher[3..0]" (rect 107 59 174 70)(font "Arial" ))
-		(line (pt 184 64)(pt 168 64)(line_width 3))
+		(text "s_higher[3..0]" (rect 155 59 222 70)(font "Arial" ))
+		(line (pt 232 64)(pt 216 64)(line_width 3))
 	)
 	(port
-		(pt 184 80)
+		(pt 232 80)
 		(output)
 		(text "s_lower[3..0]" (rect 0 0 62 11)(font "Arial" ))
-		(text "s_lower[3..0]" (rect 111 75 173 86)(font "Arial" ))
-		(line (pt 184 80)(pt 168 80)(line_width 3))
+		(text "s_lower[3..0]" (rect 159 75 221 86)(font "Arial" ))
+		(line (pt 232 80)(pt 216 80)(line_width 3))
 	)
 	(port
-		(pt 184 96)
+		(pt 232 96)
 		(output)
 		(text "ms_higher[3..0]" (rect 0 0 76 11)(font "Arial" ))
-		(text "ms_higher[3..0]" (rect 99 91 175 102)(font "Arial" ))
-		(line (pt 184 96)(pt 168 96)(line_width 3))
+		(text "ms_higher[3..0]" (rect 147 91 223 102)(font "Arial" ))
+		(line (pt 232 96)(pt 216 96)(line_width 3))
 	)
 	(port
-		(pt 184 112)
+		(pt 232 112)
 		(output)
 		(text "ms_lower[3..0]" (rect 0 0 71 11)(font "Arial" ))
-		(text "ms_lower[3..0]" (rect 103 107 174 118)(font "Arial" ))
-		(line (pt 184 112)(pt 168 112)(line_width 3))
+		(text "ms_lower[3..0]" (rect 151 107 222 118)(font "Arial" ))
+		(line (pt 232 112)(pt 216 112)(line_width 3))
 	)
 	(parameter
 		"delay"
@@ -378,100 +401,112 @@ refer to the applicable agreement for further details.
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
-		(rectangle (rect 16 16 168 128))
+		(rectangle (rect 16 16 216 128))
 	)
-	(annotation_block (parameter)(rect 480 104 664 136))
-)
-(connector
-	(pt 480 168)
-	(pt 616 168)
-	(bus)
-)
-(connector
-	(pt 616 184)
-	(pt 616 168)
-	(bus)
-)
-(connector
-	(pt 600 184)
-	(pt 600 272)
-	(bus)
-)
-(connector
-	(pt 616 272)
-	(pt 600 272)
-	(bus)
-)
-(connector
-	(pt 480 200)
-	(pt 584 200)
-	(bus)
-)
-(connector
-	(pt 584 376)
-	(pt 584 200)
-	(bus)
-)
-(connector
-	(pt 584 376)
-	(pt 616 376)
-	(bus)
-)
-(connector
-	(pt 480 216)
-	(pt 568 216)
-	(bus)
-)
-(connector
-	(pt 568 216)
-	(pt 568 472)
-	(bus)
-)
-(connector
-	(pt 568 472)
-	(pt 616 472)
-	(bus)
-)
-(connector
-	(pt 480 232)
-	(pt 552 232)
-	(bus)
-)
-(connector
-	(pt 552 232)
-	(pt 552 568)
-	(bus)
-)
-(connector
-	(pt 480 248)
-	(pt 536 248)
-	(bus)
-)
-(connector
-	(pt 536 248)
-	(pt 536 664)
-	(bus)
-)
-(connector
-	(pt 296 168)
-	(pt 280 168)
-)
-(connector
-	(pt 480 184)
-	(pt 600 184)
-	(bus)
-)
-(connector
-	(pt 552 568)
-	(pt 616 568)
-	(bus)
-)
-(connector
-	(pt 536 664)
-	(pt 616 664)
-	(bus)
+	(annotation_block (parameter)(rect 600 104 784 136))
 )
 (connector
 	(pt 88 168)
 	(pt 120 168)
+)
+(connector
+	(pt 600 168)
+	(pt 736 168)
+	(bus)
+)
+(connector
+	(pt 736 184)
+	(pt 736 168)
+	(bus)
+)
+(connector
+	(pt 720 184)
+	(pt 720 272)
+	(bus)
+)
+(connector
+	(pt 736 272)
+	(pt 720 272)
+	(bus)
+)
+(connector
+	(pt 600 200)
+	(pt 704 200)
+	(bus)
+)
+(connector
+	(pt 704 376)
+	(pt 704 200)
+	(bus)
+)
+(connector
+	(pt 704 376)
+	(pt 736 376)
+	(bus)
+)
+(connector
+	(pt 600 216)
+	(pt 688 216)
+	(bus)
+)
+(connector
+	(pt 688 216)
+	(pt 688 472)
+	(bus)
+)
+(connector
+	(pt 688 472)
+	(pt 736 472)
+	(bus)
+)
+(connector
+	(pt 600 232)
+	(pt 672 232)
+	(bus)
+)
+(connector
+	(pt 672 232)
+	(pt 672 568)
+	(bus)
+)
+(connector
+	(pt 600 248)
+	(pt 656 248)
+	(bus)
+)
+(connector
+	(pt 656 248)
+	(pt 656 664)
+	(bus)
+)
+(connector
+	(pt 672 568)
+	(pt 736 568)
+	(bus)
+)
+(connector
+	(pt 656 664)
+	(pt 736 664)
+	(bus)
+)
+(connector
+	(pt 600 184)
+	(pt 720 184)
+	(bus)
+)
+(connector
+	(pt 280 168)
+	(pt 368 168)
+)
+(connector
+	(pt 168 296)
+	(pt 296 296)
+)
+(connector
+	(pt 296 296)
+	(pt 296 184)
+)
+(connector
+	(pt 296 184)
+	(pt 368 184)
 )
