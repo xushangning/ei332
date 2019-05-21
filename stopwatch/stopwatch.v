@@ -7,33 +7,33 @@ module stopwatch_counter(
    reg [18:0] counter;        // count to 500000 before reset
 
    always @(posedge clock) begin
-      counter <= counter + 1'b1;
+      counter = counter + 1'b1;
       if (counter == delay) begin
-         counter <= 0;
-         ms_lower <= ms_lower + 1'b1;
+         counter = 0;
+         ms_lower = ms_lower + 1'b1;
 
          if (ms_lower == 10) begin
-            ms_lower <= 0;
-            ms_higher <= ms_higher + 1'b1;
+            ms_lower = 0;
+            ms_higher = ms_higher + 1'b1;
 
             if (ms_higher == 10) begin
-               ms_higher <= 0;
-               s_lower <= s_lower + 1'b1;
+               ms_higher = 0;
+               s_lower = s_lower + 1'b1;
 
                if (s_lower == 10) begin
-                  s_lower <= 0;
-                  s_higher <= s_higher + 1'b1;
+                  s_lower = 0;
+                  s_higher = s_higher + 1'b1;
 
                   if (s_higher == 6) begin
-                     s_higher <= 0;
-                     min_lower <= min_lower + 1'b1;
+                     s_higher = 0;
+                     min_lower = min_lower + 1'b1;
 
                      if (min_lower == 10) begin
-                        min_lower <= 0;
-                        min_higher <= min_higher + 1'b1;
+                        min_lower = 0;
+                        min_higher = min_higher + 1'b1;
 
                         if (min_higher == 6)
-                           min_higher <= 0;
+                           min_higher = 0;
                      end
                   end
                end
