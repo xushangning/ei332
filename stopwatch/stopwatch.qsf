@@ -105,7 +105,6 @@ set_location_assignment PIN_AA25 -to HEX5[6]
 set_global_assignment -name SDC_FILE stopwatch.sdc
 set_location_assignment PIN_Y16 -to KEY3
 set_location_assignment PIN_W15 -to KEY2
-set_location_assignment PIN_Y21 -to LED9
 set_global_assignment -name VERILOG_FILE testbench_1.v
 set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
 set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH testbench_1 -section_id eda_simulation

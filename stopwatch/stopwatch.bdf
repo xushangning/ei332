@@ -74,7 +74,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect -48 392 120 408)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "KEY1" (rect 5 0 34 11)(font "Arial" ))
+	(text "KEY1" (rect 5 0 33 11)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -188,23 +188,6 @@ refer to the applicable agreement for further details.
 		(line (pt 78 12)(pt 82 8))
 	)
 	(annotation_block (location)(rect 1080 192 1136 208))
-)
-(pin
-	(output)
-	(rect 656 728 832 744)
-	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "LED9" (rect 90 0 118 11)(font "Arial" ))
-	(pt 0 8)
-	(drawing
-		(line (pt 0 8)(pt 52 8))
-		(line (pt 52 4)(pt 78 4))
-		(line (pt 52 12)(pt 78 12))
-		(line (pt 52 12)(pt 52 4))
-		(line (pt 78 4)(pt 82 8))
-		(line (pt 82 8)(pt 78 12))
-		(line (pt 78 12)(pt 82 8))
-	)
-	(annotation_block (location)(rect 832 744 888 760))
 )
 (symbol
 	(rect 736 152 904 232)
@@ -388,9 +371,9 @@ refer to the applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 328 136 608 312)
+	(rect 328 136 608 280)
 	(text "stopwatch_counter" (rect 5 0 99 11)(font "Arial" ))
-	(text "inst" (rect 8 160 25 171)(font "Arial" ))
+	(text "inst" (rect 8 128 25 139)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -461,22 +444,20 @@ refer to the applicable agreement for further details.
 		(text "ms_lower_display[3..0]" (rect 165 107 277 118)(font "Arial" ))
 		(line (pt 280 112)(pt 264 112)(line_width 3))
 	)
-	(port
-		(pt 280 128)
-		(output)
-		(text "led0" (rect 0 0 21 11)(font "Arial" ))
-		(text "led0" (rect 242 123 263 134)(font "Arial" ))
-		(line (pt 280 128)(pt 264 128))
-	)
 	(parameter
 		"delay"
 		"500000"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"two_ms_delay"
+		"100000"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
-		(rectangle (rect 16 16 264 160))
+		(rectangle (rect 16 16 264 128))
 	)
-	(annotation_block (parameter)(rect 608 104 792 136))
+	(annotation_block (parameter)(rect 608 88 808 136))
 )
 (connector
 	(pt 736 272)
@@ -502,10 +483,6 @@ refer to the applicable agreement for further details.
 	(pt 656 664)
 	(pt 736 664)
 	(bus)
-)
-(connector
-	(pt 632 736)
-	(pt 656 736)
 )
 (connector
 	(pt 40 168)
@@ -582,14 +559,6 @@ refer to the applicable agreement for further details.
 	(pt 720 184)
 	(pt 608 184)
 	(bus)
-)
-(connector
-	(pt 632 264)
-	(pt 608 264)
-)
-(connector
-	(pt 632 736)
-	(pt 632 264)
 )
 (connector
 	(pt 248 296)
