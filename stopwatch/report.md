@@ -2,6 +2,15 @@
 
 517030910384 徐尚宁
 
+## 实验目的
+
+1. 初步掌握利用 Verilog 硬件描述语言进行逻辑功能设计的原理和方法。
+2. 理解和掌握运用大规模可编程逻辑器件进行逻辑设计的原理和方法。
+3. 理解硬件实现方法中的并行性，联系软件实现方法中的并发性。
+4. 理解硬件和软件是相辅相成、并在设计和应用方法上的优势互补的特点。
+5. 本实验学习积累的 Verilog 硬件描述语言和对 FPGA/CPLD 的编程操作，是进行后续《计
+算机组成原理》部分课程实验，设计实现计算机逻辑的基础。
+
 ## 前言
 
 本次实验中将带有暂停、显示暂停和重置功能的秒表分为四个阶段设计：
@@ -12,6 +21,32 @@
 4. 显示暂停功能
 
 ## 设计
+
+### 七段数码管译码器
+
+译码器的设计不再赘述。与样例给出的代码不同的是，译码器和计数器模块是在电路图中
+连接的，而不是在 Verilog 中实例化 `ssd` 直接连接。
+
+```verilog
+module ssd(digit, out);
+   input [3:0] digit;
+   output reg [6:0] out;
+   always @(digit)
+   case (digit)
+      0: out <= 7'b1000000;
+      1: out <= 7'b1111001;
+      2: out <= 7'b0100100;
+      3: out <= 7'b0110000;
+      4: out <= 7'b0011001;
+      5: out <= 7'b0010010;
+      6: out <= 7'b0000010;
+      7: out <= 7'b1111000;
+      8: out <= 7'b0000000;
+      9: out <= 7'b0010000;
+      default: out <= 7'b1111111;
+   endcase
+endmodule
+```
 
 ### 计时功能
 
@@ -93,7 +128,7 @@ if (~key_reset) begin
 在时钟沿时，
 
 ```verilog
-counter = counter + counting_enable`
+counter = counter + counting_enable
 ```
 
 当 `counting_enable` 为 0 时，`counter` 就不再增加。暂停键的消抖是在每个时钟沿采
@@ -104,10 +139,8 @@ counter = counter + counting_enable`
 always @(posedge clock) begin
    enable_count = key_start_pause ? 1'b0 : enable_count + 1'b1;
 
-   if (enable_count == two_ms_delay) begin
+   if (enable_count == two_ms_delay)
       counting_enable = ~counting_enable;
-      enable_count = 0;
-   end
 ```
 
 ### 显示暂停功能
@@ -115,14 +148,12 @@ always @(posedge clock) begin
 显示暂停是由 `display_frozen` 控制。当 `display_frozen` 为 1 时，显示暂停。按键
 部分实现与暂停键类似：
 
-```
+```verilog
 always @(posedge clock) begin
    freeze_count = key_freeze_resume ? 1'b0 : freeze_count + 1'b1;
 
-   if (freeze_count == two_ms_delay) begin
+   if (freeze_count == two_ms_delay)
       display_frozen = ~display_frozen;
-      freeze_count = 0;
-   end
 ```
 
 如果显示不处于暂停状态，内部计数器的值会实时更新显示计数器的值。相反，当显示暂停
@@ -148,3 +179,7 @@ if (~key_reset) begin
    display_frozen = 0;
    ...
 ```
+
+### 电路图
+
+![](schematic.png)
