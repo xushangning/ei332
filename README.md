@@ -2,6 +2,17 @@
 
 Collection of labs for EI332 of SJTU
 
+## Files to Include
+
+- Logic design files (`.v`, `.vdh`, `.bdf`, `.edf`, `.vqm`)
+- Timing constraint files (`.sdc`)
+- Quartus project settings and constraints (`.qdf`, `.qpf`, `.qsf`)
+- IP files (`.ip`, `.v`, `.sv`, `.vhd`, `.qip`, `.sip`, `.qsys`)
+- Platform Designer (Standard)-generated files (`.qsys`, `.ip`, `.sip`)
+- EDA tool files (`.vo`, `.vho`)
+
+Copied from [Intel Quartus Prime Standard Edition User Guide: Getting Started](https://www.intel.com/content/www/us/en/programmable/documentation/yoq1529444104707.html#mwh1409958325703)
+
 ## Notes
 
 Some of the files may *NOT* be distributable under the GPL license due to restrictions of the Intel University Program. The author has tried its best to remove such files but omission is unavoidable. **USE AT YOUR OWN DISCRETION!**
