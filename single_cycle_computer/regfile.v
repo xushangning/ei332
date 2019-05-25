@@ -1,3 +1,12 @@
+/**
+* rna: 1st register number
+* rnb: 2nd register number
+* d: Data to write into the register
+* wn: The number of the register to write
+* we: Register write signal from the CU
+* qa: 1st data read
+* qb: 2nd data read
+*/
 module regfile (rna,rnb,d,wn,we,clk,clrn,qa,qb);
    input [4:0] rna,rnb,wn;
    input [31:0] d;

@@ -1,3 +1,8 @@
+/**
+* aluc: Control signals for the ALU
+* shift: The first operand of ALU comes from shamt (true) or rs
+* sext: sign extension
+*/
 module sc_cu (op, func, z, wmem, wreg, regrt, m2reg, aluc, shift,
               aluimm, pcsource, jal, sext);
    input  [5:0] op,func;
