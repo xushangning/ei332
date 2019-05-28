@@ -37,8 +37,8 @@
 
 
 set_global_assignment -name FAMILY "Cyclone V"
-set_global_assignment -name DEVICE 5CSEMA6F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY single_cycle_computer
+set_global_assignment -name DEVICE 5CSEMA5F31C6
+set_global_assignment -name TOP_LEVEL_ENTITY sc_computer
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "16:00:25  MAY 24, 2019"
 set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
@@ -49,9 +49,6 @@ set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
 set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
 set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name VERILOG_FILE sc_instmem.v
@@ -62,12 +59,72 @@ set_global_assignment -name VERILOG_FILE mux2x5.v
 set_global_assignment -name VERILOG_FILE dffe32.v
 set_global_assignment -name VERILOG_FILE sc_cu.v
 set_global_assignment -name VERILOG_FILE mux4x32.v
-set_global_assignment -name VERILOG_FILE cla32.v
 set_global_assignment -name VERILOG_FILE sc_cpu.v
-set_global_assignment -name VERILOG_FILE sc_instmen.v
 set_global_assignment -name VERILOG_FILE lpm_ram_dq_dram.v
 set_global_assignment -name VERILOG_FILE regfile.v
 set_global_assignment -name VERILOG_FILE dff32.v
 set_global_assignment -name VERILOG_FILE lpm_rom_irom.v
 set_global_assignment -name VERILOG_FILE alu.v
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH single_cycle_computer_sim -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME sc_computer_sim -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id sc_computer_sim
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME sc_computer_sim -section_id sc_computer_sim
+set_global_assignment -name BDF_FILE sc_computer.bdf
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name QIP_FILE pll.qip
+set_global_assignment -name SIP_FILE pll.sip
+set_global_assignment -name VERILOG_FILE ssd.v
+set_global_assignment -name VERILOG_FILE bcd_converter.v
+set_global_assignment -name VERILOG_FILE freq_divider.v
+set_global_assignment -name VERILOG_FILE test_freq_divider.v
+set_global_assignment -name EDA_TEST_BENCH_NAME test_freq_divider -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id test_freq_divider
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME test_freq_divider -section_id test_freq_divider
+set_location_assignment PIN_AF14 -to CLOCK_50
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK_50
+set_location_assignment PIN_Y16 -to KEY3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY3
+set_location_assignment PIN_AH28 -to HEX0[6]
+set_location_assignment PIN_AG28 -to HEX0[5]
+set_location_assignment PIN_AF28 -to HEX0[4]
+set_location_assignment PIN_AG27 -to HEX0[3]
+set_location_assignment PIN_AE28 -to HEX0[2]
+set_location_assignment PIN_AE27 -to HEX0[1]
+set_location_assignment PIN_AE26 -to HEX0[0]
+set_location_assignment PIN_AD27 -to HEX1[6]
+set_location_assignment PIN_AF30 -to HEX1[5]
+set_location_assignment PIN_AF29 -to HEX1[4]
+set_location_assignment PIN_AG30 -to HEX1[3]
+set_location_assignment PIN_AH30 -to HEX1[2]
+set_location_assignment PIN_AH29 -to HEX1[1]
+set_location_assignment PIN_AJ29 -to HEX1[0]
+set_location_assignment PIN_AC30 -to HEX2[6]
+set_location_assignment PIN_AC29 -to HEX2[5]
+set_location_assignment PIN_AD30 -to HEX2[4]
+set_location_assignment PIN_AC28 -to HEX2[3]
+set_location_assignment PIN_AD29 -to HEX2[2]
+set_location_assignment PIN_AE29 -to HEX2[1]
+set_location_assignment PIN_AB23 -to HEX2[0]
+set_location_assignment PIN_AB22 -to HEX3[6]
+set_location_assignment PIN_AB25 -to HEX3[5]
+set_location_assignment PIN_AB28 -to HEX3[4]
+set_location_assignment PIN_AC25 -to HEX3[3]
+set_location_assignment PIN_AD25 -to HEX3[2]
+set_location_assignment PIN_AC27 -to HEX3[1]
+set_location_assignment PIN_AD26 -to HEX3[0]
+set_location_assignment PIN_V16 -to LED[0]
+set_location_assignment PIN_W16 -to LED[1]
+set_location_assignment PIN_V17 -to LED[2]
+set_location_assignment PIN_V18 -to LED[3]
+set_location_assignment PIN_W17 -to LED[4]
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name VERILOG_FILE single_cycle_computer_sim.v
+set_global_assignment -name EDA_TEST_BENCH_FILE sc_computer_sim.v -section_id sc_computer_sim
+set_global_assignment -name EDA_TEST_BENCH_FILE test_freq_divider.v -section_id test_freq_divider
+set_global_assignment -name EDA_TEST_BENCH_NAME single_cycle_computer_sim -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id single_cycle_computer_sim
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME single_cycle_computer_sim -section_id single_cycle_computer_sim
+set_global_assignment -name EDA_TEST_BENCH_FILE single_cycle_computer_sim.v -section_id single_cycle_computer_sim

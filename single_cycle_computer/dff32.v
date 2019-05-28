@@ -1,3 +1,8 @@
+/**
+* 32-bit D Flip-flop
+*
+* clrn: Clear on low
+*/
 module dff32 (d,clk,clrn,q);
    input  [31:0] d;
    input         clk,clrn;
