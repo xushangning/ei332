@@ -4,6 +4,7 @@
 * m2reg: Data read from the data memory will be written to the register if true.
 * aluc: Control signals for the ALU
 * shift: The first operand of ALU comes from shamt (true) or rs
+* aluimm: True if immediate value is supplied to the ALU
 * jal: True if $ra will be written
 * sext: sign extension if true
 */
@@ -50,15 +51,15 @@ module sc_cu (op, func, z, wmem, wreg, regrt, m2reg, aluc, shift,
                  i_ori | i_xori | i_lw | i_lui  | i_jal;
 
    assign aluc[3] = i_sra;
-   assign aluc[2] = i_sub | i_or | i_lui | i_srl | i_sra;
-   assign aluc[1] = i_xor | i_lui | shift;
-   assign aluc[0] = i_and | i_or | shift;
+   assign aluc[2] = i_sub | i_or | i_ori | i_lui | i_srl | i_sra;
+   assign aluc[1] = i_xor | i_xori | i_lui | shift;
+   assign aluc[0] = i_and | i_andi | i_or | i_ori | shift;
    assign shift   = i_sll | i_srl | i_sra ;
 
-   assign aluimm  = r_type;
+   assign aluimm  = ~(r_type | i_beq | i_bne);
    assign sext    = ~(i_andi | i_ori | i_xori);
-   assign wmem    = i_lw;
-   assign m2reg   = i_sw;
+   assign wmem    = i_sw;
+   assign m2reg   = i_lw;
    assign regrt   = ~r_type;
    assign jal     = i_jal;
 endmodule
