@@ -6,21 +6,36 @@ DATA_RADIX = HEX; % Enter BIN, DEC, HEX, or OCT; unless %
 CONTENT
 BEGIN
  0 : 3c010000; % (00) main:   lui $1, 0                 # address of data[0] %
+% $1 = 0 %
  1 : 34240050; % (04)         ori $4, $1, 80            # address of data[0] %
+% $1 = 0, $4 = 80 %
  2 : 20050004; % (08)         addi $5, $0, 4            # counter %
+% $1 = 0, $4 = 80, $5 = 4 %
  3 : 0c000018; % (0c) call:   jal sum                   # call function %
+% $2 = 0x258, $4 = 0x60, $5 = 0 %
  4 : ac820000; % (10)         sw $2, 0($4)              # store result %
  5 : 8c890000; % (14)         lw $9, 0($4)              # check sw %
+% $4 = 0x60, $5 = 0, $9 = 0x258 %
  6 : 01244022; % (18)         sub $8, $9, $4            # sub: $8 <- $9 - $4 %
+% $4 = 0x60, $5 = 0, $8 = 0x1F8, $9 = 0x258 %
  7 : 20050003; % (1c)         addi $5, $0, 3            # counter %
+% $5 = 3, $8 = 0x1F8, $9 = 0x258 %
  8 : 20a5ffff; % (20) loop2:  addi $5, $5, -1           # counter - 1 %
+% 1. $5 = 2, $9 = 0x258, $8 = 0x1F8 %
  9 : 34a8ffff; % (24)         ori $8, $5, 0xffff        # zero-extend: 0000ffff %
+% 1. $5 = 2, $9 = 0x258, $8 = 0xFFFF %
  A : 39085555; % (28)         xori $8, $8, 0x5555       # zero-extend: 0000aaaa %
+% 1. $5 = 2, $9 = 0x258, $8 = 0xAAAA %
  B : 2009ffff; % (2c)         addi $9, $0, -1           # sign-extend: ffffffff %
+% 1. $5 = 2, $9 = 0xFFFFFFFF, $8 = 0xAAAA %
  C : 312affff; % (30)         andi $10, $9, 0xffff      # zero-extend: 0000ffff %
+% 1. $5 = 2, $9 = 0xFFFFFFFF, $8 = 0xAAAA, $10 = 0xFFFF %
  D : 01493025; % (34)         or $6, $10, $9            # or: ffffffff %
+% 1. $5 = 2, $6 = 0xFFFFFFFF, $9 = 0xFFFFFFFF, $8 = 0xAAAA, $10 = 0xFFFF %
  E : 01494026; % (38)         xor $8, $10, $9           # xor: ffff0000 %
+% 1. $5 = 2, $6 = 0xFFFFFFFF, $9 = 0xFFFFFFFF, $8 = 0xFFFF0000, $10 = 0xFFFF %
  F : 01463824; % (3c)         and $7, $10, $6           # and: 0000ffff %
+% 1. $5 = 2, $6 = 0xFFFFFFFF, $7 = 0xFFFF $9 = 0xFFFFFFFF, $8 = 0xFFFF0000, $10 = 0xFFFF %
 10 : 10a00001; % (40)         beq $5, $0, shift         # if $5 = 0, goto shift %
 11 : 08000008; % (44)         j loop2                   # jump loop2 %
 12 : 2005ffff; % (48) shift:  addi $5, $0, -1           # $5 = ffffffff %
@@ -30,11 +45,17 @@ BEGIN
 16 : 000843c2; % (58)         srl $8, $8, 15            # >>15 = 0001ffff (logic) %
 17 : 08000017; % (5c) finish: j finish                  # dead loop %
 18 : 00004020; % (60) sum:    add $8, $0, $0            # sum %
+% $1 = 0, $4 = 80, $5 = 4, $8 = 0 %
 19 : 8c890000; % (64) loop:   lw $9, 0($4)              # load data %
+% 1. $4 = 80, $5 = 4, $8 = 0, $9 = 0xA3 %
 1A : 20840004; % (68)         addi $4, $4, 4            # address + 4 %
+% 1. $4 = 84, $5 = 4, $8 = 0, $9 = 0xA3 %
 1B : 01094020; % (6c)         add $8, $8, $9            # sum %
+% 1. $4 = 84, $5 = 4, $8 = 0xA3, $9 = 0xA3 %
 1C : 20a5ffff; % (70)         addi $5, $5, -1           # counter - 1 %
+% 1. $4 = 84, $5 = 3, $8 = 0xA3, $9 = 0xA3 %
 1D : 14a0fffb; % (74)         bne $5, $0, loop          # finish? %
+% $4 = 0x60, $5 = 0, $8 = 0x258, $9 = 0x115 %
 1E : 00081000; % (78)         sll $2, $8, 0             # move result to $v0 %
 1F : 03e00008; % (7c)         jr $ra                    # return %
 END ;
