@@ -2,6 +2,10 @@
 
 Collection of labs for EI332 of SJTU
 
+## Presentation
+
+A presentation was given to the class of 2019 about my learning experience of this course. Here is the [link](https://github.com/xushangning/ei332/blob/master/slides.pdf) to the slides.
+
 ## Files to Include
 
 - Logic design files (`.v`, `.vdh`, `.bdf`, `.edf`, `.vqm`)
