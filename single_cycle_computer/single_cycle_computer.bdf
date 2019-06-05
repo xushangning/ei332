@@ -439,9 +439,9 @@ refer to the applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 400 368 584 480)
+	(rect 400 368 576 480)
 	(text "sc_instmem" (rect 5 0 64 11)(font "Arial" ))
-	(text "inst11" (rect 8 96 39 109)(font "Intel Clear" ))
+	(text "inst4" (rect 8 96 32 109)(font "Intel Clear" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -464,21 +464,14 @@ refer to the applicable agreement for further details.
 		(line (pt 0 64)(pt 16 64))
 	)
 	(port
-		(pt 184 32)
+		(pt 176 32)
 		(output)
 		(text "inst[31..0]" (rect 0 0 48 11)(font "Arial" ))
-		(text "inst[31..0]" (rect 123 27 171 38)(font "Arial" ))
-		(line (pt 184 32)(pt 168 32)(line_width 3))
-	)
-	(port
-		(pt 184 48)
-		(output)
-		(text "imem_clk" (rect 0 0 47 11)(font "Arial" ))
-		(text "imem_clk" (rect 124 43 171 54)(font "Arial" ))
-		(line (pt 184 48)(pt 168 48))
+		(text "inst[31..0]" (rect 115 27 163 38)(font "Arial" ))
+		(line (pt 176 32)(pt 160 32)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 168 96))
+		(rectangle (rect 16 16 160 96))
 	)
 )
 (symbol
@@ -551,16 +544,9 @@ refer to the applicable agreement for further details.
 	(port
 		(pt 200 48)
 		(output)
-		(text "dmem_clk" (rect 0 0 50 11)(font "Arial" ))
-		(text "dmem_clk" (rect 137 43 187 54)(font "Arial" ))
-		(line (pt 200 48)(pt 184 48))
-	)
-	(port
-		(pt 200 64)
-		(output)
 		(text "display[31..0]" (rect 0 0 64 11)(font "Arial" ))
-		(text "display[31..0]" (rect 125 59 189 70)(font "Arial" ))
-		(line (pt 200 64)(pt 184 64)(line_width 3))
+		(text "display[31..0]" (rect 125 43 189 54)(font "Arial" ))
+		(line (pt 200 48)(pt 184 48)(line_width 3))
 	)
 	(drawing
 		(rectangle (rect 16 16 184 160))
@@ -800,12 +786,6 @@ refer to the applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "display[31..0]" (rect 1080 440 1147 453)(font "Intel Clear" ))
-	(pt 1056 456)
-	(pt 1120 456)
-	(bus)
-)
-(connector
 	(pt 120 384)
 	(pt 184 384)
 )
@@ -817,6 +797,17 @@ refer to the applicable agreement for further details.
 	(text "pc[31..0]" (rect 792 296 836 309)(font "Intel Clear" ))
 	(pt 792 312)
 	(pt 816 312)
+	(bus)
+)
+(connector
+	(pt 584 400)
+	(pt 576 400)
+	(bus)
+)
+(connector
+	(text "display[31..0]" (rect 1080 424 1147 437)(font "Intel Clear" ))
+	(pt 1056 440)
+	(pt 1120 440)
 	(bus)
 )
 (junction (pt 376 312))
