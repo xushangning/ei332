@@ -125,7 +125,7 @@ endmodule
 
 ### I/O 设计
 
-考虑到如果 CPU 时钟频率太高不方便按键输入和显示，我们设计了两个分频器，将实验板上 50 MHz 的时钟转换为频率只有 2 Hz 的时钟，再用二分频器产生频率为 1 Hz 的时钟。两个分频器代码如下：
+考虑到如果 CPU 时钟频率太高不方便观察 CPU 执行过程，我们设计了两个分频器，将实验板上 50 MHz 的时钟转换为频率只有 2 Hz 的时钟，再用二分频器产生频率为 1 Hz 的时钟。两个分频器代码如下：
 
 ```verilog
 module freq_divider(input clk_50m, output reg out_clk);
@@ -150,36 +150,46 @@ module divide_by_two(input in_clk, output reg out_clk);
 endmodule
 ```
 
-这两个分频器使得我们的 CPU 频率为 1 Hz，方便观察输出结果。在设计 I/O 时，我们采用了比较简单的思路，将数据内存的高端地址设置为 I/O 地址，直接将外设输入有关的代码内嵌在 `sc_datamem.v` 中：
+这两个分频器使得我们的 CPU 频率为 1 Hz。
+
+在设计 I/O 时，我们采用了比较简单的思路，将数据内存的高端地址设置为 I/O 地址，直接将外设输入有关的代码内嵌在 `sc_datamem.v` 中。由于该文件不仅包含数据内存相关代码，我们将其改名为 `sc_mem_controlle.v`：
 
 ```verilog
-module sc_datamem (input [31:0] addr, input [31:0] datain, input key1,
+/**
+ * The address refers to an I/O device if the highest bit is 1.
+*/
+module sc_mem_controller (
+   input [31:0] addr, input [31:0] datain, input key1,
    input [3:0] key2, input [3:0] key3, input we, input clock, input mem_clk,
-   output reg [31:0] dataout, output dmem_clk
+   output reg [31:0] dataout, output dmem_clk, output reg [31:0] display
 );
    wire [31:0] memout;
-   wire write_enable;
-   assign         write_enable = we & ~clock;
-   
-   assign         dmem_clk = mem_clk & ( ~ clock) ;
+   reg [31:0] input_out;      // output of input devices
+   wire dmem_we = we & ~addr[31];
+   wire write_enable = dmem_we & ~clock;
 
-   lpm_ram_dq_dram  dram(addr[6:2],dmem_clk,datain,write_enable, memout);
-   
-   always @(addr, key1, key2, key3, memout) begin
-      if (addr[31])
-         case (addr)
-            32'h8000_0000: dataout <= {31'b0, key1};
-            32'h8000_0004: dataout <= {28'b0, key2};
-            32'h8000_0008: dataout <= {28'b0, key3};
-            default: dataout <= 0;
-         endcase
-      else
-         dataout <= memout;
+   assign dmem_clk = mem_clk & ~clock;
+
+   lpm_ram_dq_dram dram(addr[6:2], dmem_clk, datain, write_enable, memout);
+
+   always @(*) begin
+      // input devices
+      case (addr)
+         32'h8000_0000: input_out <= {31'b0, key1};
+         32'h8000_0004: input_out <= {28'b0, key2};
+         32'h8000_0008: input_out <= {28'b0, key3};
+         default: input_out <= 32'hx;
+      endcase
+      dataout <= addr[31] ? input_out : memout;
+      
+      // output devices
+      if ((we & addr[31]) & (addr == 32'h8000_000C))
+         display <= datain;
    end
 endmodule
 ```
 
-`key1`、`key2` 和 `key3` 代表实验板上不同的按键输入。内粗地址中最高位为 1 时表明该地址指向 I/O 设备，此时根据不同的地址从不同的外设中读取数据。输出方面较为简单，直接将 ALU 的结果转码后输出到七段数码管上。下面是转码用到的 BCD 转换器：
+`key1`、`key2` 和 `key3` 代表实验板上不同的按键输入。内存地址中最高位为 1 时表明该地址指向 I/O 设备，此时根据不同的地址从不同的外设中读取数据。输出寄存器为代码中的 `display`。当 `sw` 指令指向输出设备的地址时，`datain` 就会转码后输出到七段数码管上。下面是转码用到的 BCD 转换器：
 
 ```verilog
 module bcd_converter(
@@ -219,20 +229,20 @@ module bcd_converter(
 endmodule
 ```
 
-为了实时展示程序的执行，我们将当前 PC 的值输出到了板上的 LED。测试上述 I/O 功能
-的指令如下：
+为了实时展示程序的执行，我们将当前 PC 的值输出到了板上的 LED。测试上述 I/O 功能的指令如下：
 
 ```mips
-start:     and  $8, $0, $0
-           lui  $8, 0x8000
-           lw   $9, 0($8)
-           lw   $10, 4($8)
-           lw   $11, 8($8)
-           beq  $9, $0, plus
-           sub  $10, $10, $11
-           j    start
-plus:      add  $10, $10, $11
-           j    start
+start:     and $8, $0, $0   
+           lui $8, 0x8000   
+           lw $9, 0($8)     
+           lw $10, 4($8)    
+           lw $11, 8($8)    
+           beq $9, $0, plus 
+           sub $10, $10, $11
+           j out            
+plus:      add $10, $10, $11
+out:       sw $10, 12($8)   
+           j start          
 ```
 
-首先，CPU 计算出 I/O 对应的内存地址，读取外设的数据，再根据读取的数据决定是执行加法还是加法，对读取到的输入执行相应的运算。
+首先，CPU 计算出 I/O 对应的内存地址，读取外设的数据，再根据读取的数据决定是执行加法还是加法，对读取到的输入执行相应的运算，最终将运算结果写到七段数码管中。
