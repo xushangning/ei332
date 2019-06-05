@@ -68,12 +68,13 @@ refer to the applicable agreement for further details.
 		(line (pt 109 12)(pt 113 8))
 	)
 	(text "VCC" (rect 128 7 148 17)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect 528 464 592 480))
 )
 (pin
 	(input)
 	(rect 592 464 760 480)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "SW8[3..0]" (rect 5 0 55 13)(font "Intel Clear" ))
+	(text "SW8[3..0]" (rect 5 0 54 13)(font "Intel Clear" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -84,12 +85,13 @@ refer to the applicable agreement for further details.
 		(line (pt 109 12)(pt 113 8))
 	)
 	(text "VCC" (rect 128 7 148 17)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect 520 480 592 496))
 )
 (pin
 	(input)
 	(rect 592 480 760 496)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "SW4[3..0]" (rect 5 0 55 13)(font "Intel Clear" ))
+	(text "SW4[3..0]" (rect 5 0 54 13)(font "Intel Clear" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -100,6 +102,7 @@ refer to the applicable agreement for further details.
 		(line (pt 109 12)(pt 113 8))
 	)
 	(text "VCC" (rect 128 7 148 17)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect 528 496 592 512))
 )
 (pin
 	(output)
@@ -525,7 +528,7 @@ refer to the applicable agreement for further details.
 )
 (symbol
 	(rect 856 392 1056 568)
-	(text "sc_datamem" (rect 5 0 68 11)(font "Arial" ))
+	(text "sc_mem_controller" (rect 5 0 99 11)(font "Arial" ))
 	(text "inst" (rect 8 160 25 171)(font "Arial" ))
 	(port
 		(pt 0 32)
@@ -596,6 +599,13 @@ refer to the applicable agreement for further details.
 		(text "dmem_clk" (rect 0 0 50 11)(font "Arial" ))
 		(text "dmem_clk" (rect 137 43 187 54)(font "Arial" ))
 		(line (pt 200 48)(pt 184 48))
+	)
+	(port
+		(pt 200 64)
+		(output)
+		(text "display[31..0]" (rect 0 0 64 11)(font "Arial" ))
+		(text "display[31..0]" (rect 125 59 189 70)(font "Arial" ))
+		(line (pt 200 64)(pt 184 64)(line_width 3))
 	)
 	(drawing
 		(rectangle (rect 16 16 184 160))
@@ -766,12 +776,6 @@ refer to the applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "display[31..0]" (rect 848 328 915 341)(font "Intel Clear" ))
-	(pt 848 344)
-	(pt 904 344)
-	(bus)
-)
-(connector
 	(text "pc[6..2]" (rect 864 296 901 309)(font "Intel Clear" ))
 	(pt 888 312)
 	(pt 912 312)
@@ -864,8 +868,13 @@ refer to the applicable agreement for further details.
 	(pt 856 488)
 	(bus)
 )
+(connector
+	(text "display[31..0]" (rect 1080 440 1147 453)(font "Intel Clear" ))
+	(pt 1056 456)
+	(pt 1120 456)
+	(bus)
+)
 (junction (pt 376 312))
 (junction (pt 184 384))
 (junction (pt 344 432))
 (junction (pt 376 416))
-(junction (pt 848 344))
