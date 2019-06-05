@@ -21,7 +21,7 @@ refer to the applicable agreement for further details.
 (header "graphic" (version "1.4"))
 (pin
 	(input)
-	(rect -400 376 -232 392)
+	(rect -248 376 -80 392)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
 	(text "CLOCK_50" (rect 5 0 59 13)(font "Intel Clear" ))
 	(pt 168 8)
@@ -34,7 +34,7 @@ refer to the applicable agreement for further details.
 		(line (pt 109 12)(pt 113 8))
 	)
 	(text "VCC" (rect 128 7 148 17)(font "Arial" (font_size 6)))
-	(annotation_block (location)(rect -464 392 -400 408))
+	(annotation_block (location)(rect -312 392 -248 408))
 )
 (pin
 	(input)
@@ -172,25 +172,8 @@ refer to the applicable agreement for further details.
 	)
 	(annotation_block (location)(rect 1600 392 1664 408))
 )
-(pin
-	(output)
-	(rect 912 304 1088 320)
-	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "LED[4..0]" (rect 90 0 136 11)(font "Arial" ))
-	(pt 0 8)
-	(drawing
-		(line (pt 0 8)(pt 52 8))
-		(line (pt 52 4)(pt 78 4))
-		(line (pt 52 12)(pt 78 12))
-		(line (pt 52 12)(pt 52 4))
-		(line (pt 78 4)(pt 82 8))
-		(line (pt 82 8)(pt 78 12))
-		(line (pt 78 12)(pt 82 8))
-	)
-	(annotation_block (location)(rect 1032 320 1088 336))
-)
 (symbol
-	(rect -208 312 -48 456)
+	(rect -40 312 120 456)
 	(text "pll" (rect 74 -1 90 15)(font "Arial" (font_size 10)))
 	(text "inst2" (rect 8 128 32 141)(font "Intel Clear" ))
 	(port
@@ -280,34 +263,6 @@ refer to the applicable agreement for further details.
 	(drawing
 		(rectangle (rect 16 16 184 96))
 	)
-)
-(symbol
-	(rect -24 352 144 432)
-	(text "freq_divider" (rect 5 0 64 11)(font "Arial" ))
-	(text "inst4" (rect 8 64 32 77)(font "Intel Clear" ))
-	(port
-		(pt 0 32)
-		(input)
-		(text "clk_50m" (rect 0 0 41 11)(font "Arial" ))
-		(text "clk_50m" (rect 21 27 62 38)(font "Arial" ))
-		(line (pt 0 32)(pt 16 32))
-	)
-	(port
-		(pt 168 32)
-		(output)
-		(text "out_clk" (rect 0 0 35 11)(font "Arial" ))
-		(text "out_clk" (rect 118 27 153 38)(font "Arial" ))
-		(line (pt 168 32)(pt 152 32))
-	)
-	(parameter
-		"delay"
-		"24999999"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(drawing
-		(rectangle (rect 16 16 152 64))
-	)
-	(annotation_block (parameter)(rect -24 448 168 480))
 )
 (symbol
 	(rect 216 208 368 288)
@@ -620,22 +575,10 @@ refer to the applicable agreement for further details.
 	(pt 376 240)
 )
 (connector
-	(pt -208 384)
-	(pt -232 384)
-)
-(connector
-	(pt -48 384)
-	(pt -24 384)
-)
-(connector
 	(text "display[12..0]" (rect 786 152 853 165)(font "Intel Clear" ))
 	(pt 856 168)
 	(pt 776 168)
 	(bus)
-)
-(connector
-	(pt 144 384)
-	(pt 184 384)
 )
 (connector
 	(pt 376 312)
@@ -719,12 +662,6 @@ refer to the applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "pc[31..0]" (rect 802 296 846 309)(font "Intel Clear" ))
-	(pt 792 312)
-	(pt 840 312)
-	(bus)
-)
-(connector
 	(pt 1056 168)
 	(pt 1144 168)
 	(bus)
@@ -773,12 +710,6 @@ refer to the applicable agreement for further details.
 (connector
 	(pt 792 344)
 	(pt 848 344)
-	(bus)
-)
-(connector
-	(text "pc[6..2]" (rect 864 296 901 309)(font "Intel Clear" ))
-	(pt 888 312)
-	(pt 912 312)
 	(bus)
 )
 (connector
@@ -872,6 +803,20 @@ refer to the applicable agreement for further details.
 	(text "display[31..0]" (rect 1080 440 1147 453)(font "Intel Clear" ))
 	(pt 1056 456)
 	(pt 1120 456)
+	(bus)
+)
+(connector
+	(pt 120 384)
+	(pt 184 384)
+)
+(connector
+	(pt -40 384)
+	(pt -80 384)
+)
+(connector
+	(text "pc[31..0]" (rect 792 296 836 309)(font "Intel Clear" ))
+	(pt 792 312)
+	(pt 816 312)
 	(bus)
 )
 (junction (pt 376 312))
