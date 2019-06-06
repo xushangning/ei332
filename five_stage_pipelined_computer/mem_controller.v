@@ -24,9 +24,10 @@ module mem_controller (
          default: input_out <= 32'hx;
       endcase
       dataout <= addr[31] ? input_out : memout;
-      
-      // output devices
+   end
+
+   // output devices
+   always @(posedge dmem_clk)
       if ((we & addr[31]) & (addr == 32'h8000_000C))
          display <= datain;
-   end
 endmodule
