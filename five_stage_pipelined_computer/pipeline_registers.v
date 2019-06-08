@@ -41,16 +41,16 @@ endmodule
 
 module ex_mem_reg(
    input clk, input wreg_in, input m2reg_in, input wmem_in,
-   input [31:0] alu_result_in, input [31:0] rb_in, input [4:0] write_reg_num_in,
+   input [31:0] alu_result_in, input [31:0] mem_write_data_in, input [4:0] write_reg_num_in,
    output reg wreg, output reg m2reg, output reg wmem, output reg [31:0] alu_result,
-   output reg [31:0] rb, output reg [4:0] write_reg_num
+   output reg [31:0] mem_write_data, output reg [4:0] write_reg_num
 );
    always @(posedge clk) begin
       wreg <= wreg_in;
       m2reg <= m2reg_in;
       wmem <= wmem_in;
       alu_result <= alu_result_in;
-      rb <= rb_in;
+      mem_write_data <= mem_write_data_in;
       write_reg_num <= write_reg_num_in;
    end
 endmodule
