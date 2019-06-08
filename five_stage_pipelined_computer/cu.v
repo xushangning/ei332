@@ -1,18 +1,19 @@
 /**
-* wmem: Enable memory write if true
-* regrt: True if rt is the register to write
-* m2reg: Data read from the data memory will be written to the register if true.
-* aluc: Control signals for the ALU
-* shift: The first operand of ALU comes from shamt (true) or rs
-* aluimm: True if immediate value is supplied to the ALU
-* jal: True if $ra will be written
-* sext: sign extension if true
-*/
-module cu (op, func, z, wmem, wreg, regrt, m2reg, aluc, shift,
+ * ra_rb_equal: True if two values read from the register file are equal
+ * wmem: Enable memory write if true
+ * regrt: True if rt is the register to write
+ * m2reg: Data read from the data memory will be written to the register if true.
+ * aluc: Control signals for the ALU
+ * shift: The first operand of ALU comes from shamt (true) or rs
+ * aluimm: True if immediate value is supplied to the ALU
+ * jal: True if $ra will be written
+ * sext: sign extension if true
+ */
+module cu (op, func, ra_rb_equal, wmem, wreg, regrt, m2reg, aluc, shift,
               aluimm, pcsource, jal, sext);
-   input  [5:0] op,func;
-   input        z;
-   output       wreg,regrt,jal,m2reg,shift,aluimm,sext,wmem;
+   input [5:0] op,func;
+   input ra_rb_equal;
+   output wreg,regrt,jal,m2reg,shift,aluimm,sext,wmem;
    output [3:0] aluc;
    output [1:0] pcsource;
    wire r_type = ~|op;
@@ -44,14 +45,14 @@ module cu (op, func, z, wmem, wreg, regrt, m2reg, aluc, shift,
    wire i_jal  = ~op[5] & ~op[4] & ~op[3] & ~op[2] & op[1] & op[0];
 
    assign pcsource[1] = i_jr | i_j | i_jal;
-   assign pcsource[0] = ( i_beq & z ) | (i_bne & ~z) | i_j | i_jal ;
+   assign pcsource[0] = (i_beq & ra_rb_equal) | (i_bne & ~ra_rb_equal) | i_j | i_jal;
    
    assign wreg = i_add | i_sub | i_and | i_or   | i_xor  |
                  i_sll | i_srl | i_sra | i_addi | i_andi |
                  i_ori | i_xori | i_lw | i_lui  | i_jal;
 
    assign aluc[3] = i_sra;
-   assign aluc[2] = i_sub | i_or | i_ori | i_lui | i_srl | i_sra;
+   assign aluc[2] = i_sub | i_or | i_ori | i_lui | i_srl | i_sra | i_beq | i_bne;
    assign aluc[1] = i_xor | i_xori | i_lui | shift;
    assign aluc[0] = i_and | i_andi | i_or | i_ori | shift;
    assign shift   = i_sll | i_srl | i_sra ;

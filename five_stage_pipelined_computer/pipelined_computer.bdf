@@ -21,7 +21,7 @@ refer to the applicable agreement for further details.
 (header "graphic" (version "1.4"))
 (pin
 	(input)
-	(rect -400 376 -232 392)
+	(rect -232 376 -64 392)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
 	(text "CLOCK_50" (rect 5 0 59 13)(font "Intel Clear" ))
 	(pt 168 8)
@@ -187,7 +187,7 @@ refer to the applicable agreement for further details.
 	(annotation_block (location)(rect 1032 320 1088 336))
 )
 (symbol
-	(rect -208 312 -48 456)
+	(rect -40 312 120 456)
 	(text "pll" (rect 74 -1 90 15)(font "Arial" (font_size 10)))
 	(text "inst2" (rect 8 128 32 141)(font "Intel Clear" ))
 	(port
@@ -277,34 +277,6 @@ refer to the applicable agreement for further details.
 	(drawing
 		(rectangle (rect 16 16 184 96))
 	)
-)
-(symbol
-	(rect -24 352 144 432)
-	(text "freq_divider" (rect 5 0 64 11)(font "Arial" ))
-	(text "inst4" (rect 8 64 32 77)(font "Intel Clear" ))
-	(port
-		(pt 0 32)
-		(input)
-		(text "clk_50m" (rect 0 0 41 11)(font "Arial" ))
-		(text "clk_50m" (rect 21 27 62 38)(font "Arial" ))
-		(line (pt 0 32)(pt 16 32))
-	)
-	(port
-		(pt 168 32)
-		(output)
-		(text "out_clk" (rect 0 0 35 11)(font "Arial" ))
-		(text "out_clk" (rect 118 27 153 38)(font "Arial" ))
-		(line (pt 168 32)(pt 152 32))
-	)
-	(parameter
-		"delay"
-		"24999999"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(drawing
-		(rectangle (rect 16 16 152 64))
-	)
-	(annotation_block (parameter)(rect -24 448 168 480))
 )
 (symbol
 	(rect 216 208 368 288)
@@ -603,22 +575,10 @@ refer to the applicable agreement for further details.
 	(pt 376 240)
 )
 (connector
-	(pt -208 384)
-	(pt -232 384)
-)
-(connector
-	(pt -48 384)
-	(pt -24 384)
-)
-(connector
 	(text "display[12..0]" (rect 786 152 853 165)(font "Intel Clear" ))
 	(pt 856 168)
 	(pt 776 168)
 	(bus)
-)
-(connector
-	(pt 144 384)
-	(pt 184 384)
 )
 (connector
 	(pt 376 312)
@@ -861,6 +821,14 @@ refer to the applicable agreement for further details.
 	(pt 576 400)
 	(pt 584 400)
 	(bus)
+)
+(connector
+	(pt 120 384)
+	(pt 184 384)
+)
+(connector
+	(pt -64 384)
+	(pt -40 384)
 )
 (junction (pt 376 312))
 (junction (pt 184 384))

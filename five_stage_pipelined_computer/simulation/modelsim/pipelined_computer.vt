@@ -1,0 +1,15 @@
+`timescale 1ns/1ns
+
+module pipelined_computer_test;
+   reg clk, reset;
+   pipelined_computer computer(.KEY3(reset), .CLOCK_50(clk));
+   
+   initial begin
+      reset = 0;
+      clk <= 0;
+      // duration of reset must be carefully selected
+      #20 reset = 1;
+   end
+   
+   always #10 clk <= ~clk;
+endmodule
