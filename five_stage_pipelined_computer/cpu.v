@@ -14,11 +14,13 @@ module cpu (
       npc;        // Next value of the PC, selected from 4 inputs
    wire [31:0] id_p4, id_inst;                  // wires used in the ID stage
    wire [1:0] pcsource;
-   dff32 pc_reg(npc, clock, resetn, pc);        // define a D-register for PC
+   reg stall;
+   wire stall_inv = ~stall;
+   dffe32 pc_reg(npc, clock, resetn, stall_inv, pc);        // define a D flip-flop for PC
    // select next pc
    mux4x32 next_pc(p4, branch_addr, ra, jump_addr, pcsource, npc);
 
-   if_id_reg if_id_reg_inst(clock, p4, inst, id_p4, id_inst);
+   if_id_reg if_id_reg_inst(clock, resetn, stall_inv, p4, inst, id_p4, id_inst);
 
    // ID stage
    wire [15:0] imm = id_inst[15:0];
@@ -52,8 +54,9 @@ module cpu (
    wire [3:0] ex_aluc;
    wire [31:0] ex_p4, ex_new_ra, ex_new_rb, ex_imm;
    wire [4:0] ex_write_reg_num;
+   wire id_ex_reg_resetn = resetn & stall_inv;
    id_ex_reg id_ex_reg_inst(
-      clock, id_wreg, id_m2reg, id_wmem, id_jal, id_aluc, id_aluimm, id_shift,
+      clock, id_ex_reg_resetn, id_wreg, id_m2reg, id_wmem, id_jal, id_aluc, id_aluimm, id_shift,
       id_p4, new_ra, new_rb, id_imm, id_write_reg_num,
       ex_wreg, ex_m2reg, ex_wmem, ex_jal, ex_aluc, ex_aluimm, ex_shift,
       ex_p4, ex_new_ra, ex_new_rb, ex_imm, ex_write_reg_num);
@@ -89,7 +92,6 @@ module cpu (
    // WB stage
    assign reg_data_in = wb_m2reg ? wb_mem_data : wb_alu_result;
    
-   // forwarding
    always @(*) begin
       // forward to ra of ID
       // check whether inst[25:21] == 0 with |inst[25:21]
@@ -112,5 +114,11 @@ module cpu (
             new_rb <= alu;
       else
          new_rb <= rb;
+      
+      // stall if lw is follwed by an instruction that will uses the register
+      // value at EX or earlier
+      // not only r type instruction
+      stall <= ex_m2reg && (id_inst[25:21] == ex_write_reg_num_updated
+            || id_inst[20:16] == ex_write_reg_num_updated);
    end
 endmodule
