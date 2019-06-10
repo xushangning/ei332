@@ -14,7 +14,7 @@ module cpu (
       npc;        // Next value of the PC, selected from 4 inputs
    wire [31:0] id_p4, id_inst;                  // wires used in the ID stage
    wire [1:0] pcsource;
-   reg stall;
+   wire stall;
    wire stall_inv = ~stall;
    dffe32 pc_reg(npc, clock, resetn, stall_inv, pc);        // define a D flip-flop for PC
    // select next pc
@@ -44,10 +44,12 @@ module cpu (
 
    // signals from the WB stage
    wire [4:0] wb_write_reg_num;
+   // Register file is fed an inverse clock
+   wire clock_inv = ~clock;
    wire wb_wreg;
    regfile regfile_inst(
       id_inst[25:21], id_inst[20:16], reg_data_in, wb_write_reg_num,
-      wb_wreg, clock, resetn, ra, rb);
+      wb_wreg, clock_inv, resetn, ra, rb);
 
    // wires used during the EX stage
    wire ex_wreg, ex_m2reg, ex_wmem, ex_jal, ex_aluimm, ex_shift;
@@ -71,7 +73,13 @@ module cpu (
    wire [4:0] ex_write_reg_num_updated = ex_write_reg_num | {5{ex_jal}};
    // z port of ALU is not connected.
    alu alu_inst(alu_a, alu_b, ex_aluc, ex_alu_result);
-   
+
+   // stall if lw is follwed by an instruction that will uses the register
+   // value at EX or earlier
+   // sw is excluded
+   assign stall = ex_m2reg && ~id_wmem && (id_inst[25:21] == ex_write_reg_num_updated
+         || id_inst[20:16] == ex_write_reg_num_updated);
+
    wire mem_wreg, mem_m2reg;
    wire [4:0] mem_write_reg_num;
    // data to write to the memory, with forwarding
@@ -114,11 +122,5 @@ module cpu (
             new_rb <= alu;
       else
          new_rb <= rb;
-      
-      // stall if lw is follwed by an instruction that will uses the register
-      // value at EX or earlier
-      // not only r type instruction
-      stall <= ex_m2reg && (id_inst[25:21] == ex_write_reg_num_updated
-            || id_inst[20:16] == ex_write_reg_num_updated);
    end
 endmodule
