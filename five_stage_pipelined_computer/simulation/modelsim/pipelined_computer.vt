@@ -1,4 +1,4 @@
-`timescale 1ns/1ns
+`timescale 10ns/10ns
 
 module pipelined_computer_test;
    reg clk, reset;
@@ -7,9 +7,8 @@ module pipelined_computer_test;
    initial begin
       reset = 0;
       clk <= 0;
-      // duration of reset must be carefully selected
-      #20 reset = 1;
+      #2 reset = 1;
    end
    
-   always #10 clk <= ~clk;
+   always #1 clk <= ~clk;
 endmodule
