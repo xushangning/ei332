@@ -9,16 +9,15 @@ module cpu (
    // IF stage
    wire [31:0] p4 = pc + 4, jump_addr = {p4[31:28], inst[25:0], 2'b00};
    wire [31:0] branch_addr,
-      ra,         // 1st value read from the register file
-      rb,         // 2nd value read from the register file
       npc;        // Next value of the PC, selected from 4 inputs
+   reg [31:0] new_ra, new_rb;                   // forwarded ra and rb
    wire [31:0] id_p4, id_inst;                  // wires used in the ID stage
    wire [1:0] pcsource;
    wire stall;
    wire stall_inv = ~stall;
    dffe32 pc_reg(npc, clock, resetn, stall_inv, pc);        // define a D flip-flop for PC
    // select next pc
-   mux4x32 next_pc(p4, branch_addr, ra, jump_addr, pcsource, npc);
+   mux4x32 next_pc(p4, branch_addr, new_ra, jump_addr, pcsource, npc);
 
    if_id_reg if_id_reg_inst(clock, resetn, stall_inv, p4, inst, id_p4, id_inst);
 
@@ -33,7 +32,6 @@ module cpu (
    wire extension_bit = imm[15] & sext;
    wire [31:0] reg_data_in;                  // Data to write to the register
    wire [31:0] id_imm = {{16{extension_bit}}, imm};   // extended immmediate value
-   reg [31:0] new_ra, new_rb;                // forwarded ra and rb
    wire ra_rb_equal = new_ra == new_rb;
 
    assign branch_addr = id_p4 + {{14{imm[15]}}, imm, 2'b00};
@@ -46,6 +44,7 @@ module cpu (
    wire [4:0] wb_write_reg_num;
    // Register file is fed an inverse clock
    wire clock_inv = ~clock;
+   wire [31:0] ra, rb;     // 1st and 2nd value read from the register file
    wire wb_wreg;
    regfile regfile_inst(
       id_inst[25:21], id_inst[20:16], reg_data_in, wb_write_reg_num,
