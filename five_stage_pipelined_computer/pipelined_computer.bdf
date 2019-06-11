@@ -21,7 +21,7 @@ refer to the applicable agreement for further details.
 (header "graphic" (version "1.4"))
 (pin
 	(input)
-	(rect -232 376 -64 392)
+	(rect -280 376 -112 392)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
 	(text "CLOCK_50" (rect 5 0 59 13)(font "Intel Clear" ))
 	(pt 168 8)
@@ -34,7 +34,7 @@ refer to the applicable agreement for further details.
 		(line (pt 109 12)(pt 113 8))
 	)
 	(text "VCC" (rect 128 7 148 17)(font "Arial" (font_size 6)))
-	(annotation_block (location)(rect -464 392 -400 408))
+	(annotation_block (location)(rect -296 392 -232 408))
 )
 (pin
 	(input)
@@ -68,6 +68,7 @@ refer to the applicable agreement for further details.
 		(line (pt 109 12)(pt 113 8))
 	)
 	(text "VCC" (rect 128 7 148 17)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect 528 464 592 480))
 )
 (pin
 	(input)
@@ -84,6 +85,7 @@ refer to the applicable agreement for further details.
 		(line (pt 109 12)(pt 113 8))
 	)
 	(text "VCC" (rect 128 7 148 17)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect 520 480 592 496))
 )
 (pin
 	(input)
@@ -100,6 +102,7 @@ refer to the applicable agreement for further details.
 		(line (pt 109 12)(pt 113 8))
 	)
 	(text "VCC" (rect 128 7 148 17)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect 528 496 592 512))
 )
 (pin
 	(output)
@@ -169,25 +172,8 @@ refer to the applicable agreement for further details.
 	)
 	(annotation_block (location)(rect 1600 392 1664 408))
 )
-(pin
-	(output)
-	(rect 912 304 1088 320)
-	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "LED[4..0]" (rect 90 0 136 11)(font "Arial" ))
-	(pt 0 8)
-	(drawing
-		(line (pt 0 8)(pt 52 8))
-		(line (pt 52 4)(pt 78 4))
-		(line (pt 52 12)(pt 78 12))
-		(line (pt 52 12)(pt 52 4))
-		(line (pt 78 4)(pt 82 8))
-		(line (pt 82 8)(pt 78 12))
-		(line (pt 78 12)(pt 82 8))
-	)
-	(annotation_block (location)(rect 1032 320 1088 336))
-)
 (symbol
-	(rect -40 312 120 456)
+	(rect -88 312 72 456)
 	(text "pll" (rect 74 -1 90 15)(font "Arial" (font_size 10)))
 	(text "inst2" (rect 8 128 32 141)(font "Intel Clear" ))
 	(port
@@ -669,19 +655,8 @@ refer to the applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 840 440)
-	(pt 856 440)
-	(bus)
-)
-(connector
 	(pt 792 344)
 	(pt 848 344)
-	(bus)
-)
-(connector
-	(text "pc[6..2]" (rect 864 296 901 309)(font "Intel Clear" ))
-	(pt 888 312)
-	(pt 912 312)
 	(bus)
 )
 (connector
@@ -745,26 +720,15 @@ refer to the applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "display[31..0]" (rect 1064 424 1131 437)(font "Intel Clear" ))
-	(pt 1056 440)
-	(pt 1136 440)
-	(bus)
-)
-(connector
 	(pt 576 400)
 	(pt 584 400)
 	(bus)
-)
-(connector
-	(pt -64 384)
-	(pt -40 384)
 )
 (connector
 	(pt 144 384)
 	(pt 144 416)
 )
 (connector
-	(text "<<__$DEF_ALIAS86>>" (rect 160 400 272 413)(font "Intel Clear" )(invisible))
 	(pt 144 416)
 	(pt 176 416)
 )
@@ -777,7 +741,6 @@ refer to the applicable agreement for further details.
 	(pt 856 520)
 )
 (connector
-	(text "<<__$DEF_ALIAS196>>" (rect 232 400 351 413)(font "Intel Clear" )(invisible))
 	(pt 224 416)
 	(pt 344 416)
 )
@@ -786,20 +749,35 @@ refer to the applicable agreement for further details.
 	(pt 400 416)
 )
 (connector
-	(pt 304 384)
-	(pt 304 312)
-)
-(connector
-	(pt 120 384)
-	(pt 144 384)
-)
-(connector
-	(pt 144 384)
-	(pt 304 384)
-)
-(connector
 	(pt 304 312)
 	(pt 608 312)
+)
+(connector
+	(pt 304 312)
+	(pt 304 384)
+)
+(connector
+	(pt 840 440)
+	(pt 856 440)
+	(bus)
+)
+(connector
+	(pt 144 384)
+	(pt 304 384)
+)
+(connector
+	(text "display[31..0]" (rect 1063 424 1130 437)(font "Intel Clear" ))
+	(pt 1056 440)
+	(pt 1112 440)
+	(bus)
+)
+(connector
+	(pt 72 384)
+	(pt 144 384)
+)
+(connector
+	(pt -112 384)
+	(pt -88 384)
 )
 (junction (pt 344 416))
 (junction (pt 144 384))

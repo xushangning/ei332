@@ -5,25 +5,15 @@ DATA_RADIX = HEX; % Enter BIN, DEC, HEX, or OCT; unless %
 % otherwise specified, radixes = HEX %
 CONTENT
 BEGIN
- 0 : 00004024; % start:     and $8, $0, $0          %
- 1 : 34090050; %            ori $t1, $zero, 0x50    %
- 2 : 8D280000; %            lw $t0, 0($t1)          %
- 3 : 01084020; %            add $t0, $t0, $t0       %
- 4 : 01084020; %            add $t0, $t0, $t0       %
- 5 : 01084020; %            add $t0, $t0, $t0       %
- 6 : 01084020; %            add $t0, $t0, $t0       %
- 7 : 8D280004; %            lw $t0, 0x4($t1)        %
- 8 : AD280010; %            sw $t0, 0x10($t1)       %
- 9 : 01202025; %            or $a0, $t1, $zero      %
- A : 20050004; %            addi $a1, $zero, 4      %
- B : 0C00000D; %            jal sum                 %
- C : 0C00000C; % finish:    j finish                %
- D : 00004025; % sum:       or $t0, $zero, $zero    %
- E : 8C890000; % loop:      lw $t1, 0($a0)          %
- F : 20840004; %            addi $a0, $a0, 4        %
-10 : 01094020; %            add $t0, $t0, $t1       %
-11 : 20A5FFFF; %            addi $a1, $a1, -1       %
-12 : 14A0FFFB; %            bne $a1, $zero, loop    %
-13 : 00081000; %            sll $v0, $t0, 0         %
-14 : 03E00008; %            jr $ra                  %
+ 0 : 00004024; % start:     and $8, $0, $0      %
+ 1 : 3C088000; %            lui $8, 0x8000      %
+ 2 : 8D090000; %            lw $9, 0($8)        %
+ 3 : 8D0A0004; %            lw $10, 4($8)       %
+ 4 : 8D0B0008; %            lw $11, 8($8)       %
+ 5 : 11200002; %            beq $9, $0, plus    %
+ 6 : 014B5022; %            sub $10, $10, $11   %
+ 7 : 08000009; %            j out               %
+ 8 : 014B5020; % plus:      add $10, $10, $11   %
+ 9 : AD0A000C; % out:       sw $10, 12($8)      %
+ A : 08000000; %            j start             %
 END ;

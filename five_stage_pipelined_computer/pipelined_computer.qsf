@@ -82,4 +82,46 @@ set_global_assignment -name QIP_FILE lpm_ram_dq_dram.qip
 set_global_assignment -name QIP_FILE lpm_rom_irom.qip
 set_global_assignment -name VERILOG_FILE pipeline_registers.v
 set_global_assignment -name VERILOG_FILE pipelined_computer.v
+set_location_assignment PIN_AF14 -to CLOCK_50
+set_location_assignment PIN_Y16 -to KEY3
+set_location_assignment PIN_AH28 -to HEX0[6]
+set_location_assignment PIN_AG28 -to HEX0[5]
+set_location_assignment PIN_AF28 -to HEX0[4]
+set_location_assignment PIN_AG27 -to HEX0[3]
+set_location_assignment PIN_AE28 -to HEX0[2]
+set_location_assignment PIN_AE27 -to HEX0[1]
+set_location_assignment PIN_AE26 -to HEX0[0]
+set_location_assignment PIN_AD27 -to HEX1[6]
+set_location_assignment PIN_AF30 -to HEX1[5]
+set_location_assignment PIN_AF29 -to HEX1[4]
+set_location_assignment PIN_AG30 -to HEX1[3]
+set_location_assignment PIN_AH30 -to HEX1[2]
+set_location_assignment PIN_AH29 -to HEX1[1]
+set_location_assignment PIN_AJ29 -to HEX1[0]
+set_location_assignment PIN_AC30 -to HEX2[6]
+set_location_assignment PIN_AC29 -to HEX2[5]
+set_location_assignment PIN_AD30 -to HEX2[4]
+set_location_assignment PIN_AC28 -to HEX2[3]
+set_location_assignment PIN_AD29 -to HEX2[2]
+set_location_assignment PIN_AE29 -to HEX2[1]
+set_location_assignment PIN_AB23 -to HEX2[0]
+set_location_assignment PIN_AB22 -to HEX3[6]
+set_location_assignment PIN_AB25 -to HEX3[5]
+set_location_assignment PIN_AB28 -to HEX3[4]
+set_location_assignment PIN_AC25 -to HEX3[3]
+set_location_assignment PIN_AD25 -to HEX3[2]
+set_location_assignment PIN_AC27 -to HEX3[1]
+set_location_assignment PIN_AD26 -to HEX3[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK_50
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY3
+set_location_assignment PIN_AE12 -to SW9
+set_location_assignment PIN_AD10 -to SW8[3]
+set_location_assignment PIN_AC9 -to SW8[2]
+set_location_assignment PIN_AE11 -to SW8[1]
+set_location_assignment PIN_AD12 -to SW8[0]
+set_location_assignment PIN_AD11 -to SW4[3]
+set_location_assignment PIN_AF10 -to SW4[2]
+set_location_assignment PIN_AF9 -to SW4[1]
+set_location_assignment PIN_AC12 -to SW4[0]
+
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
