@@ -7,8 +7,8 @@ module cpu (
    output [31:0] pc, output wmem, output [31:0] alu, output [31:0] data
 );
    // IF stage
-   wire [31:0] p4 = pc + 4, jump_addr = {p4[31:28], inst[25:0], 2'b00};
-   wire [31:0] branch_addr,
+   wire [31:0] p4 = pc + 4;
+   wire [31:0] branch_addr, jump_addr,
       npc;        // Next value of the PC, selected from 4 inputs
    reg [31:0] new_ra, new_rb;                   // forwarded ra and rb
    wire [31:0] id_p4, id_inst;                  // wires used in the ID stage
@@ -35,6 +35,7 @@ module cpu (
    wire ra_rb_equal = new_ra == new_rb;
 
    assign branch_addr = id_p4 + {{14{imm[15]}}, imm, 2'b00};
+   assign jump_addr = {id_p4[31:28], id_inst[25:0], 2'b00};
    cu cu_inst(
       id_inst[31:26], id_inst[5:0], ra_rb_equal,
       id_wmem, id_wreg, regrt, id_m2reg, id_aluc, id_shift, id_aluimm,
