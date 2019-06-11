@@ -87,7 +87,7 @@ module cpu (
    wire [4:0] mem_write_reg_num;
    // data to write to the memory, with forwarding
    wire [31:0] mem_write_data = (mem_m2reg & ex_wmem
-      & (mem_write_reg_num == ex_write_reg_num)) ? mem : new_rb;
+      & (mem_write_reg_num == ex_write_reg_num)) ? mem : ex_new_rb;
    ex_mem_reg ex_mem_reg_inst(
       clock, ex_wreg, ex_m2reg, ex_wmem, ex_alu_result_updated,
       mem_write_data, ex_write_reg_num_updated,
