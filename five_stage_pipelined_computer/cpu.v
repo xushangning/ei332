@@ -19,7 +19,10 @@ module cpu (
    // select next pc
    mux4x32 next_pc(p4, branch_addr, new_ra, jump_addr, pcsource, npc);
 
-   if_id_reg if_id_reg_inst(clock, resetn, stall_inv, p4, inst, id_p4, id_inst);
+   // handle control hazards
+   wire control_hazard_stall_inv = pcsource == 2'b00,
+      if_id_reg_resetn = resetn & control_hazard_stall_inv;
+   if_id_reg if_id_reg_inst(clock, if_id_reg_resetn, stall_inv, p4, inst, id_p4, id_inst);
 
    // ID stage
    wire [15:0] imm = id_inst[15:0];
