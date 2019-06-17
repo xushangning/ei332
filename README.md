@@ -38,4 +38,4 @@ Notably, *none* of the files from the IP catalog is included.
 - [yyong119/EI332-SourceCode](https://github.com/yyong119/EI332-SourceCode)
 - [Elsevier · Patterson, Hennessy: Computer Organization and Design, 5th Edition · MIPS Reference Data (Green Card)](https://booksite.elsevier.com/9780124077263/mips_reference_data.php)
 - [Intel Quartus Prime Software User Guides](https://www.intel.com/content/www/us/en/programmable/products/design-software/fpga-design/quartus-prime/user-guides.html)
-- [MIPS Converter](MIPS Converter)
+- [MIPS Converter](https://www.eg.bucknell.edu/~csci320/mips_web/)
