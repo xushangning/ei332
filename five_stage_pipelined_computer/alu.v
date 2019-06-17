@@ -10,7 +10,7 @@ module alu (a,b,aluc,s,z);
          4'bx001: s = a & b;
          4'bx101: s = a | b;
          4'bx010: s = a ^ b;
-         4'bx110: s = {b[15:0], a[15:0]};    // lui
+         4'bx110: s = {b[15:0], 15'b0};    // lui
          4'b0011: s = b << a;
          4'b0111: s = b >> a;
          4'b1111: s = $signed(b) >>> a;      // sra
